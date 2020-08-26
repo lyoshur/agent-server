@@ -1,7 +1,7 @@
 <xml>
     <!-- 服务器开启端口 -->
     <server port="8088"/>
-    <!-- 日志所在目类 -->
+    <!-- 日志所在目录 -->
     <log open="true" path="log"/>
     <!-- CORS跨域请求设置 -->
     <cors open="false">
@@ -15,10 +15,21 @@
         <sign>ADW4WA56WA6FW1A1DW5A64W8RE7</sign>
     </sign-header>
     <!-- 反向代理设置 -->
-    <proxy path="/test">
-        <url>http://127.0.0.1:8080/</url>
+    <proxy host="localhost" path="/">
+        <url>http://127.0.0.1:8000/</url>
     </proxy>
-    <proxy path="/test2">
-        <url>http://127.0.0.1:8080/</url>
+    <proxy host="127.0.0.1" path="/">
+        <!-- CORS跨域请求设置 -->
+        <cors open="false">
+            <header key="X-Frame-Options" value="SAMEORIGIN"/>
+            <header key="Access-Control-Allow-Origin" value="*"/>
+            <header key="Access-Control-Allow-Headers" value="Origin, X-Requested-With, Content-Type, Accept"/>
+            <header key="Access-Control-Allow-Methods" value="GET, POST, OPTIONS"/>
+        </cors>
+        <!-- 请求头签名设置 -->
+        <sign-header open="false">
+            <sign>ADW4WA56WA6FW1A1DW5A64W8RE7</sign>
+        </sign-header>
+        <url>http://127.0.0.1:8001/</url>
     </proxy>
 </xml>

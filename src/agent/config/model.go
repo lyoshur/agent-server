@@ -7,6 +7,14 @@ type Config struct {
 	agentutils.AgentConfig
 	CORS       Cors       `xml:"cors"`
 	SignHeader SignHeader `xml:"sign-header"`
+	Proxies    []Proxy    `xml:"proxy"`
+}
+
+// 反向代理设置
+type Proxy struct {
+	agentutils.AgentProxy
+	CORS       Cors       `xml:"cors"`
+	SignHeader SignHeader `xml:"sign-header"`
 }
 
 // 跨域配置
